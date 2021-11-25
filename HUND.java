@@ -81,7 +81,7 @@ public class HUND{
     }
     
     public void aendern(String nameneu, int alterneu){
-        name = nameneu;
+        name = nameneu; 
         alter = alterneu;
     }
     
