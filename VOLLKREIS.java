@@ -1,8 +1,8 @@
 public class VOLLKREIS{
     
     //Attributliste
-    int x;
-    int y;
+    int x; //x-Koordinate Mittelpunkt
+    int y; //y-Koordinate
     int radius;
     int farbnr;
     
