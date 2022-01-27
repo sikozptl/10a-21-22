@@ -1,11 +1,11 @@
 /**Ein Objekt der Klasse Walze soll aussehen wie 
  * ein Quadrat mit einem farbigen Vollkreis innen drin.
 */
-public class WALZE{
+public class WALZE{  
     //Jede Walze hat ein VOLLKREIS-Objekt und ein KASTEN-Objekt
     //Attributliste
-    VOLLKREIS kreis;
-    KASTEN kasten;
+    private VOLLKREIS kreis;
+    private KASTEN kasten;
     
     //Konstruktor der Klasse WALZE
     //Der Kreis soll im Kasten sein.
@@ -33,6 +33,10 @@ public class WALZE{
     public void umfaerben(int farbeN){
         //Aufruf der Methode setfarbnr in VOLLKREIS
         kreis.setfarbnr(farbeN);
+    }
+    
+    public int getFarbe(){
+        return kreis.getFarbe();
     }
     
 }
