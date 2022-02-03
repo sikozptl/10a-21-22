@@ -85,4 +85,11 @@ public class HUND{
         alter = alterneu;
     }
     
+    public void katzenmobbing(){
+        KATZE katze = new KATZE();
+        System.out.println(katze.getgroesse());
+        katze.setgroesse(-10);
+        System.out.println(katze.getgroesse());
+    }
+    
 }//Ende Klasse
