@@ -8,6 +8,7 @@ public class SPIELAUTOMAT{
     //Zufallsgenerator einbauen
     private Random zufgen;
     private int Guthaben;
+    private int spielnr;
 
     ///Konstruktor der Klasse AMPEL
     public SPIELAUTOMAT(){
@@ -15,16 +16,16 @@ public class SPIELAUTOMAT{
         walze2 = new WALZE(200,100,100,6);
         walze3 = new WALZE(300,100,100,2);
         zufgen = new Random();
-        Guthaben = 5;
+        Guthaben = 1000;
     }    
 
     //Methoden
-    public void setzeFarbmuster(int f1, int f2, int f3){
+    private void setzeFarbmuster(int f1, int f2, int f3){
         walze1.umfaerben(f1);
         walze2.umfaerben(f2);
         walze3.umfaerben(f3);        
     }
-    
+
     public void einzahlen(int betrag){
         if(betrag > 0){ 
             Guthaben = Guthaben + betrag;    
@@ -33,12 +34,12 @@ public class SPIELAUTOMAT{
             System.out.println("Betrag muss positiv sein!");
         }
     }
-    
+
     /** Gibt entweder 10 zurück (bei drei gleichen Farben)
      * oder sie gibt 2 zurück (bei zwei gleichen Farben)
      * oder sie gibt 0 zurück (drei verschiedene Farben)
-       **/
-    public int ermittleGewinn(){
+     **/
+    private int ermittleGewinn(){
         //hole dir die Farben der drei Vollkreise
         //und speichere sie in Variablen
         //dann Fallunterscheidung(en)
@@ -64,6 +65,8 @@ public class SPIELAUTOMAT{
         if(Guthaben > 0){
             Guthaben = Guthaben - 1;
             setzeFarbmuster(zufgen.nextInt(9),zufgen.nextInt(9),zufgen.nextInt(9));
+            spielnr++;
+            System.out.print(spielnr + ". ");
             Guthaben = Guthaben + ermittleGewinn();
             //System.out.println("Guthaben: " + Guthaben);
             schreibeWerte();
@@ -71,28 +74,43 @@ public class SPIELAUTOMAT{
             System.out.println("Alles verzockt. Wirf mehr Geld ein.");
         }
     }
-    
-    //Spiele automatisch, bis 10 EUR gewonnen worden sind
-    //Spiele automatisch, bis drei gleiche Farben erscheinen
-    public void gewinneSicher(){
-        //Wiederholungsschleife
-        while( (ermittleGewinn() != 10) && (Guthaben > 0) ){
-            //Sequenz (wird wiederholt, wenn die Bedingung wahr ist)
+
+    //wiederholt den spielvorgang n mal
+    public void spiele(int n){ 
+        for(int i=1 ;i<=n;i++){
             spiele();
-        }
-    }    
-    
-    public void schleifentest(){
-        int x = 0;
-        while(x<100000){
-            x++;
-            System.out.println("x: " +x);
         }
     }
     
+    //wiederholt den spielvorgang n mal
+    public void spielen(int n){ 
+        while(n>0){
+            n--;
+            spiele();
+        }
+    }    
+
+    public void spieleSelbst(){
+        while(Guthaben > 0){
+            spiele();
+        }
+    }
+
+    //Spiele automatisch, bis 10 EUR gewonnen worden sind
+    public void gewinneSicher(){
+        int anzahl = 0;
+        //Wiederholung mit Endbedingung
+        do{
+            //Sequenz (wird wiederholt, wenn die Bedingung wahr ist)
+            spiele();
+            anzahl++; //anzahl = anzahl + 1;
+        }while((ermittleGewinn() != 10) && (Guthaben > 0));
+        System.out.println("Es wurden " + anzahl + " Spielvorgänge benötigt!");
+    }    
+
     //Gibt die FarbNr, Gewinn, Guthaben aus
     //Ausgabe: 664 Gewinn: 2 Guthaben: 4
-    public void schreibeWerte(){ 
+    private void schreibeWerte(){ 
         int w1 = walze1.getFarbe();
         int w2 = walze2.getFarbe();
         int w3 = walze3.getFarbe();     
