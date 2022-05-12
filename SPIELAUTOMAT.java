@@ -9,6 +9,7 @@ public class SPIELAUTOMAT{
     private Random zufgen;
     private int Guthaben;
     private int spielnr;
+    private int[] gewinnSpeicher;
 
     ///Konstruktor der Klasse AMPEL
     public SPIELAUTOMAT(){
@@ -17,11 +18,13 @@ public class SPIELAUTOMAT{
         walze3 = new WALZE(300,100,100,2);
         zufgen = new Random();
         Guthaben = 1000;
+        gewinnSpeicher = new int[1000000];
     }    
 
     //Methoden
     private void setzeFarbmuster(int f1, int f2, int f3){
-        walze1.umfaerben(f1);
+        walze1.kreis.farbnr = f1;
+        //walze1.umfaerben(f1);
         walze2.umfaerben(f2);
         walze3.umfaerben(f3);        
     }
@@ -65,6 +68,8 @@ public class SPIELAUTOMAT{
         if(Guthaben > 0){
             Guthaben = Guthaben - 1;
             setzeFarbmuster(zufgen.nextInt(9),zufgen.nextInt(9),zufgen.nextInt(9));
+            // Hier Gewinnspeicher mit Gewinn füllen
+            gewinnSpeicher[spielnr] = ermittleGewinn();
             spielnr++;
             System.out.print(spielnr + ". ");
             Guthaben = Guthaben + ermittleGewinn();
@@ -73,6 +78,14 @@ public class SPIELAUTOMAT{
         }else{
             System.out.println("Alles verzockt. Wirf mehr Geld ein.");
         }
+    }
+    
+    public int summeAuszahlungen(){
+        int summe = 0;
+        for(int i=0; i<gewinnSpeicher.length; i++){
+                summe = summe + gewinnSpeicher[i];
+        }     
+        return summe;
     }
 
     //wiederholt den spielvorgang n mal

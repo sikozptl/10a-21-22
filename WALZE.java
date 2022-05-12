@@ -4,7 +4,7 @@
 public class WALZE{  
     //Jede Walze hat ein VOLLKREIS-Objekt und ein KASTEN-Objekt
     //Attributliste
-    private VOLLKREIS kreis;
+    public VOLLKREIS kreis;
     private KASTEN kasten;
     
     //Konstruktor der Klasse WALZE

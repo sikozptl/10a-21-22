@@ -4,7 +4,7 @@ public class VOLLKREIS{
     private int x; //x-Koordinate Mittelpunkt
     private int y; //y-Koordinate
     private int radius;
-    private int farbnr;
+    public int farbnr;
     
     // 0 schwarz, 1 blau, 2 grün, 3 türkis
     // 4 rot, 5 magenta, 6 gelb, 7 grau, 8 weiß
