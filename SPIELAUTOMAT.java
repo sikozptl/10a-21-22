@@ -23,8 +23,7 @@ public class SPIELAUTOMAT{
 
     //Methoden
     private void setzeFarbmuster(int f1, int f2, int f3){
-        walze1.kreis.farbnr = f1;
-        //walze1.umfaerben(f1);
+        walze1.umfaerben(f1);
         walze2.umfaerben(f2);
         walze3.umfaerben(f3);        
     }
