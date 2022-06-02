@@ -1,4 +1,4 @@
-import java.util.Random;
+ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -15,7 +15,9 @@ public class SPIELAUTOMAT{
     private JButton spieleknopf;
     private JButton aufladenknopf;
     private JButton grossergewinnknopf;    
+    private JButton spieleselbstknopf;     
     private JLabel label;
+    private JLabel guthabenlabel;    
 
     ///Konstruktor der Klasse AMPEL
     public SPIELAUTOMAT(){
@@ -29,16 +31,21 @@ public class SPIELAUTOMAT{
         spieleknopf = new JButton("Spiele");
         aufladenknopf = new JButton("Aufladen");
         grossergewinnknopf = new JButton("gewinne Sicher");  
+        spieleselbstknopf  = new JButton("alles verzocken!");  
         label = new JLabel("Guthaben: " + Guthaben);
+        guthabenlabel = new JLabel("Guthaben: " + Guthaben);        
         //JButton dem ZEICHENFENSTER hinzufügen
         ZEICHENFENSTER.gibFenster().komponenteHinzufuegen(spieleknopf,"rechts");
         ZEICHENFENSTER.gibFenster().komponenteHinzufuegen(aufladenknopf,"rechts");
         ZEICHENFENSTER.gibFenster().komponenteHinzufuegen(grossergewinnknopf,"rechts");        
+        ZEICHENFENSTER.gibFenster().komponenteHinzufuegen(spieleselbstknopf,"rechts");        
         ZEICHENFENSTER.gibFenster().komponenteHinzufuegen(label,"unten");        
+        ZEICHENFENSTER.gibFenster().komponenteHinzufuegen(guthabenlabel,"rechts");                
         //JButton mit Aktion versehen: spiele() aufrufen
         spieleknopf.addActionListener(e -> spiele());
         aufladenknopf.addActionListener(e -> einzahlen(10));
         grossergewinnknopf.addActionListener(e -> gewinneSicher());        
+        spieleselbstknopf.addActionListener(e -> spieleSelbst());                
     }    
 
     //Methoden
@@ -51,7 +58,8 @@ public class SPIELAUTOMAT{
     public void einzahlen(int betrag){
         if(betrag > 0){ 
             Guthaben = Guthaben + betrag;    
-            ausgeben("Guthaben: " + Guthaben);
+            ausgeben("Es wurden " + betrag + " EUR eingezahlt. ");
+            guthabenlabel.setText("Guthaben: " + Guthaben);
         }else{
             ausgeben("Betrag muss positiv sein!");
         }
@@ -113,6 +121,18 @@ public class SPIELAUTOMAT{
         //explizite Typumwandlung
         return ((double)summeAuszahlungen()) / ((double)spielnr);
     }
+    
+    public int zaehleHauptgewinne(){ 
+        int hg = 0;
+        //durchs Array laufen und Hauptgewinne zählen
+        for(int i=0; i<spielnr; i++){
+            if(gewinnSpeicher[i] == 10){
+                hg++;
+                //hg = hg +1;
+            }
+        }     
+        return hg;
+    }
 
     //wiederholt den spielvorgang n mal
     public void spiele(int n){ 
@@ -153,12 +173,12 @@ public class SPIELAUTOMAT{
         int w1 = walze1.getFarbe();
         int w2 = walze2.getFarbe();
         int w3 = walze3.getFarbe();     
-        //ausgeben("FarbNr: " + w1 + w2 + w3 + " Gewinn: " + ermittleGewinn() + " Guthaben: " +Guthaben);
-        ausgeben(" Guthaben: " +Guthaben);        
+        ausgeben("Sie haben " + ermittleGewinn() + " EUR gewonnen.");
+        guthabenlabel.setText(" Guthaben: " + Guthaben);        
     }
     
     private void ausgeben(String s){
         label.setText(s);
-        System.out.println(s);
+        //System.out.println(s);
     }
 }
