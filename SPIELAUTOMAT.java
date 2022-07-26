@@ -1,6 +1,7 @@
- import java.util.Random;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.util.ArrayList;
 
 public class SPIELAUTOMAT{
     //Attributliste
@@ -11,7 +12,8 @@ public class SPIELAUTOMAT{
     private Random zufgen;
     private int Guthaben;
     private int spielnr;
-    private int[] gewinnSpeicher;
+    //private int[] gewinnSpeicher;
+    private ArrayList<Integer> gewinnSpeicher2;    
     private JButton spieleknopf;
     private JButton aufladenknopf;
     private JButton grossergewinnknopf;    
@@ -26,7 +28,8 @@ public class SPIELAUTOMAT{
         walze3 = new WALZE(300,100,100,2);
         zufgen = new Random();
         Guthaben = 1000;
-        gewinnSpeicher = new int[1000000];
+        //gewinnSpeicher = new int[100];
+        gewinnSpeicher2 = new ArrayList<Integer>();        
         //JButton erzeugen
         spieleknopf = new JButton("Spiele");
         aufladenknopf = new JButton("Aufladen");
@@ -96,7 +99,8 @@ public class SPIELAUTOMAT{
             Guthaben = Guthaben - 1;
             setzeFarbmuster(zufgen.nextInt(9),zufgen.nextInt(9),zufgen.nextInt(9));
             // Hier Gewinnspeicher mit Gewinn füllen
-            gewinnSpeicher[spielnr] = ermittleGewinn();
+            //gewinnSpeicher[spielnr] = ermittleGewinn();
+            gewinnSpeicher2.add(ermittleGewinn());            
             spielnr++;
             ausgeben(spielnr + ". ");
             Guthaben = Guthaben + ermittleGewinn();
@@ -109,8 +113,8 @@ public class SPIELAUTOMAT{
     
     public int summeAuszahlungen(){
         int summe = 0;
-        for(int i=0; i<gewinnSpeicher.length; i++){
-                summe = summe + gewinnSpeicher[i];
+        for(int i=0; i<gewinnSpeicher2.size(); i++){
+                summe = summe + gewinnSpeicher2.get(i);
         }     
         return summe;
     }
@@ -126,7 +130,7 @@ public class SPIELAUTOMAT{
         int hg = 0;
         //durchs Array laufen und Hauptgewinne zählen
         for(int i=0; i<spielnr; i++){
-            if(gewinnSpeicher[i] == 10){
+            if(gewinnSpeicher2.get(i) == 10){
                 hg++;
                 //hg = hg +1;
             }

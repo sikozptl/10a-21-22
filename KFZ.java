@@ -3,20 +3,20 @@ public abstract class KFZ extends FAHRZEUG{
     //Attributliste
     //Objekt erbt Attribute aus FAHRZEUG: Geschwindigkeit, HGS, Farbe, Hersteller
     //Jedes KFZ-Objekt HAT einen MOTOR, d.h. 
-    MOTOR motor; //Referenzvariable, Datentyp MOTOR, Name motor
+    private MOTOR motor; //Referenzvariable, Datentyp MOTOR, Name motor
     
     //Konstruktor 1
     public KFZ(){
         super(); //Ruft FAHRZEUG-Konstruktor auf
         motor = new MOTOR();
-        HoechstGeschwindigkeit = motor.berechneHoechstgeschwindigkeit();
+        setHoechstGeschwindigkeit(motor.berechneHoechstgeschwindigkeit());
     }
 
     //Konstruktor 2
     public KFZ(String Herstellerneu, String Farbeneu, double HubraumNeu){
         super(Herstellerneu, Farbeneu);
         motor = new MOTOR(HubraumNeu);
-        HoechstGeschwindigkeit = motor.berechneHoechstgeschwindigkeit();
+        setHoechstGeschwindigkeit(motor.berechneHoechstgeschwindigkeit());
     }
     
     //Methoden ohne Rückgabewert (void)
@@ -38,6 +38,6 @@ public abstract class KFZ extends FAHRZEUG{
     //toString Methode charakterisiert das Objekt, d.h. 
     //liefert Attributwerte des Objekts als Text zurück
     public String toString(){
-        return "Das ist ein " + Farbe + "er "+ Hersteller + " mit Hubraum " + motor.Hubraum + " mit Geschindigkeit " + Geschwindigkeit;
+        return "Das ist ein " + getFarbe() + "er "+ getHersteller() + " mit Hubraum " + motor.Hubraum + " mit Geschindigkeit " + getGeschwindigkeit();
     }
 }

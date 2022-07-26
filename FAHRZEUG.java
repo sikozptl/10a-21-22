@@ -1,10 +1,10 @@
 public abstract class FAHRZEUG{
 
     //Attributliste
-    String Hersteller;
-    String Farbe;
-    int Geschwindigkeit;
-    int HoechstGeschwindigkeit;    
+    private String Hersteller;
+    private String Farbe;
+    private int Geschwindigkeit;
+    private int HoechstGeschwindigkeit;    
 
     //Konstruktor 1
     public FAHRZEUG(){
@@ -21,6 +21,26 @@ public abstract class FAHRZEUG{
         Geschwindigkeit = 0;
         HoechstGeschwindigkeit = 0;
     }    
+    
+    public String getFarbe(){
+        return Farbe;
+    }
+    
+    public String getHersteller(){
+        return Hersteller;
+    }
+    
+    public int getGeschwindigkeit(){
+        return Geschwindigkeit;
+    }
+    
+    public int getHoechstGeschwindigkeit(){
+        return HoechstGeschwindigkeit;
+    }    
+    
+    public void setHoechstGeschwindigkeit(int hgwn){
+        HoechstGeschwindigkeit = hgwn;
+    }        
     
     //Konstruktor 3
     public FAHRZEUG(String Herstellerneu, String Farbeneu, int HGSneu){

@@ -78,6 +78,13 @@ public class ZEICHENFENSTER
         singleton.zeige();
         return singleton;
     }
+    
+    public static JFrame gibFrame()
+    {
+        if (singleton==null){singleton=new ZEICHENFENSTER("Das Zeichenfenster");}
+        singleton.zeige();
+        return singleton.frame;
+    }    
 
     /**
      * Macht das Zeichenfenster sichtbar bzw. setzt es in den Vordergrund,

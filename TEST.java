@@ -16,13 +16,13 @@ public class TEST{
         car2.startstop();
         //Losfahren
         car1.beschleunigen();
-        System.out.println("HoechstGeschwindigkeit car2: " + car2.HoechstGeschwindigkeit);
+        System.out.println("HoechstGeschwindigkeit car2: " + car2.getHoechstGeschwindigkeit());
         car2.beschleunigen();
 
         //Fahrrad-Test
         FAHRRAD rad1 = new FAHRRAD();       
         System.out.println(rad1.toString());
         rad1.beschleunigen(90);
-        System.out.println("Geschwindigkeit rad1: " + rad1.Geschwindigkeit);
+        System.out.println("Geschwindigkeit rad1: " + rad1.getGeschwindigkeit());
     }
 }
